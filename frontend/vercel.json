@@ -1,0 +1,33 @@
+{
+  "redirects": [
+    {
+      "source": "https://www.campusconnect.co.ke/:path*",
+      "destination": "https://campusconnect.co.ke/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "http://campusconnect.co.ke/:path*",
+      "destination": "https://campusconnect.co.ke/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "http://www.campusconnect.co.ke/:path*",
+      "destination": "https://campusconnect.co.ke/:path*",
+      "statusCode": 301
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/product/:id",
+      "destination": "https://api.campusconnect.co.ke/product/:id"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "https://api.campusconnect.co.ke/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "https://api.campusconnect.co.ke/robots.txt"
+    }
+  ]
+}

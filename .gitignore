@@ -1,0 +1,22 @@
+node_modules/
+**/node_modules/
+
+# Environment
+.env
+backend/.env
+frontend/.env
+
+# Seed and local scripts
+backend/seed.js
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.DS_Store
+
+# Build
+dist/
+build/
