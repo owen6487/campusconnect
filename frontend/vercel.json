@@ -1,21 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "https://www.campusconnect.co.ke/:path*",
-      "destination": "https://campusconnect.co.ke/:path*",
-      "statusCode": 301
-    },
-    {
-      "source": "http://campusconnect.co.ke/:path*",
-      "destination": "https://campusconnect.co.ke/:path*",
-      "statusCode": 301
-    },
-    {
-      "source": "http://www.campusconnect.co.ke/:path*",
-      "destination": "https://campusconnect.co.ke/:path*",
-      "statusCode": 301
-    }
-  ],
   "rewrites": [
     {
       "source": "/product/:id",
