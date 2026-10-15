@@ -11,6 +11,10 @@
     {
       "source": "/robots.txt",
       "destination": "https://api.campusconnect.co.ke/robots.txt"
+    },
+    {
+      "source": "/((?!api/|_next/|.*\\..*$).*)",
+      "destination": "/index.html"
     }
   ]
 }
