@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import {
     LuShare2, LuX, LuLink, LuCheck,
 } from "react-icons/lu";
-import { FaWhatsapp, FaFacebookF, FaXTwitter } from "react-icons/fa6";
+import { FaWhatsapp, FaFacebookF, FaXTwitter, FaTiktok } from "react-icons/fa6";
 
 // Usage:
 //
@@ -153,7 +153,7 @@ export default function ShareButton({
                             </div>
 
                             <p className="mt-3 text-xs text-slate-500">
-                                Whoever gets the link will see the photo, title and price.
+                             invites others to join.
                             </p>
 
                             <div className="mt-4 grid gap-2">
@@ -186,6 +186,16 @@ export default function ShareButton({
                                 >
                                     <FaXTwitter className="w-4 h-4" />
                                     X (Twitter)
+                                </a>
+                                <a
+                                    href={`https://www.tiktok.com/upload?text=${enc(`${message} ${shareUrl}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => setOpen(false)}
+                                    className={rowClass}
+                                >
+                                    <FaTiktok className="w-4 h-4" />
+                                    TikTok
                                 </a>
                                 <button type="button" onClick={copyLink} className={rowClass}>
                                     {copied

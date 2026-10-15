@@ -23,9 +23,9 @@ const mongoose = require("mongoose");
 const sharp = require("sharp"); // npm i sharp
 const Product = require("../models/product");
 
-const SITE_URL = (process.env.SITE_URL || "http://localhost:5173").replace(/\/$/, "");
+const SITE_URL = (process.env.SITE_URL || "https://campusconnect.co.ke").replace(/\/$/, "");
 const SITE_NAME = "Campus Connect";
-const DEFAULT_IMAGE = `${SITE_URL}/og-default.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/org.jpg`;
 const DIST_INDEX = process.env.FRONTEND_DIST
   ? path.join(process.env.FRONTEND_DIST, "index.html")
   : null;
