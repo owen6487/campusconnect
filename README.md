@@ -103,9 +103,9 @@ RESEND_FROM=noreply@campusconnect.co.ke
 
 ```env
 # frontend/.env
-VITE_REACT_APP_API_URL=http://localhost:5000
-VITE_SERVER_URL=http://localhost:5000
-VITE_GOOGLE_CLIENT_ID=your_google_client_id
+REACT_API_URL=http://localhost:5000
+SERVER_URL=http://localhost:5000
+GOOGLE_CLIENT_ID=your_google_client_id
 ```
 
 

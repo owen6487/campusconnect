@@ -16,7 +16,8 @@ function Loginpage() {
     const[error,seterror] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-    const hasGoogleLogin = !!import.meta.env.VITE_GOOGLE_CLIENT_ID && import.meta.env.VITE_GOOGLE_CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID';
+    const googleClientId = import.meta.env.GOOGLE_CLIENT_ID || import.meta.env.REACT_APP_GOOGLE_CLIENT_ID || import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    const hasGoogleLogin = !!googleClientId && googleClientId !== 'YOUR_GOOGLE_CLIENT_ID';
 
     const from = location.state?.from?.pathname || '/';
     

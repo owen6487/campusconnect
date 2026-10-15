@@ -13,7 +13,8 @@ function Signuppage() {
   usePageMeta({ title: "Sign up", noindex: true, description: "Create your Campus Connect account to buy and sell items on campus." });
   const { signup, googleLogin } = useAuth();
   const navigate = useNavigate();
-  const hasGoogleLogin = !!import.meta.env.VITE_GOOGLE_CLIENT_ID && import.meta.env.VITE_GOOGLE_CLIENT_ID !== "YOUR_GOOGLE_CLIENT_ID";
+  const googleClientId = import.meta.env.GOOGLE_CLIENT_ID || import.meta.env.REACT_APP_GOOGLE_CLIENT_ID || import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  const hasGoogleLogin = !!googleClientId && googleClientId !== "YOUR_GOOGLE_CLIENT_ID";
   const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [campuses, setCampuses] = useState([]);

@@ -7,7 +7,7 @@ import App from './App.jsx';
 import { AuthProvider } from './context/Authcontext.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const googleClientId = import.meta.env.GOOGLE_CLIENT_ID || import.meta.env.REACT_APP_GOOGLE_CLIENT_ID || import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const hasGoogleClientId = !!googleClientId && googleClientId !== 'YOUR_GOOGLE_CLIENT_ID';
 
 const app = (
