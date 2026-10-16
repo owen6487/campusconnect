@@ -23,7 +23,7 @@ export default function InviteBanner() {
                            hover:border-blue-300 hover:bg-blue-50/40 transition
                            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             >
-                <img src="/Banner.png" alt="" className="w-20 h-11 object-cover rounded" />
+                <img src="/org.jpg" alt="Campus Connect" className="w-20 h-11 object-cover rounded" />
                 <div className="flex-1">
                     <p className="font-semibold text-sm">Campus Connect grows by sharing</p>
                     <p className="text-xs text-gray-500">
@@ -42,7 +42,7 @@ export default function InviteBanner() {
                     onClose={() => setOpen(false)}
                     title="Campus Connect"
                     subtitle="Buy · Sell · Discover"
-                    image="/Banner.png"
+                    image="/org.jpg"
                     url={window.location.origin}
                     text="No more word of mouth — buy & sell anything with students on your campus:"
                 />
