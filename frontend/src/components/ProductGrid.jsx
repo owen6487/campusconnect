@@ -1,17 +1,6 @@
 import { Link } from 'react-router-dom';
+import { getImageUrl, FALLBACK_IMAGE } from '../utils/imageUrl';
 
-const API_BASE_URL = import.meta.env.REACT_API_URL || import.meta.env.SERVER_URL || import.meta.env.REACT_APP_API_URL || import.meta.env.VITE_REACT_APP_API_URL || 'https://api.campusconnect.co.ke';
-const SERVER_ORIGIN = String(API_BASE_URL).replace(/\/api\/?$/, '');
-const FALLBACK_IMAGE =
-  'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80';
- 
-const getImageUrl = (image) => {
-  if (!image) return FALLBACK_IMAGE;
-  if (image.startsWith('http://') || image.startsWith('https://')) return image;
-  if (image.startsWith('/')) return `${SERVER_ORIGIN}${image}`;
-  return `${SERVER_ORIGIN}/uploads/${image}`;
-};
- 
 const ProductGrid = ({
   products,
   loading,
@@ -19,7 +8,7 @@ const ProductGrid = ({
   onLoadMore,
   emptyMessage = 'No items here yet. Be the first to sell something!',
 }) => {
-  
+
   // first load: show skeletons instead of the empty message
   if (loading && products.length === 0) {
     return (
@@ -35,7 +24,7 @@ const ProductGrid = ({
       </div>
     );
   }
- 
+
   if (!loading && products.length === 0) {
     return (
       <div className="text-center py-16 text-gray-500">
@@ -44,37 +33,46 @@ const ProductGrid = ({
       </div>
     );
   }
- 
+
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {products.map((p) => (
-          <Link
-            key={p._id}
-            to={`/product/${p._id}`}
-            className="bg-white p-3 sm:p-4 rounded shadow hover:shadow-lg transition-shadow"
-          >
-            <img
-              src={getImageUrl(p.images?.[0])}
-              alt={p.name}
-              loading="lazy"
-              width={500}
-              height={320}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = FALLBACK_IMAGE;
-              }}
-              className="w-full h-40 sm:h-48 object-cover rounded"
-            />
-            <h2 className="text-base sm:text-lg font-semibold mt-2 truncate">{p.name}</h2>
-            <p className="text-sm text-gray-600 line-clamp-2">{p.description}</p>
-            <p className="text-gray-800 font-bold mt-1">
-              KSh {Number(p.price).toLocaleString()}
-            </p>
-          </Link>
-        ))}
+        {products.map((p) => {
+          const location = [p.campus?.name, p.branch?.name].filter(Boolean).join(' · ');
+
+          return (
+            <Link
+              key={p._id}
+              to={`/product/${p._id}`}
+              className="bg-white p-3 sm:p-4 rounded shadow hover:shadow-lg transition-shadow"
+            >
+              <img
+                src={getImageUrl(p.images?.[0])}
+                alt={p.name}
+                loading="lazy"
+                width={500}
+                height={320}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = FALLBACK_IMAGE;
+                }}
+                className="w-full h-40 sm:h-48 object-cover rounded"
+              />
+              {location && (
+                <p className="mt-2 text-[11px] font-medium uppercase tracking-wide text-gray-500 truncate">
+                  {location}
+                </p>
+              )}
+              <h2 className="text-base sm:text-lg font-semibold truncate">{p.name}</h2>
+              <p className="text-sm text-gray-600 line-clamp-2">{p.description}</p>
+              <p className="text-gray-800 font-bold mt-1">
+                KSh {Number(p.price).toLocaleString()}
+              </p>
+            </Link>
+          );
+        })}
       </div>
- 
+
       {hasMore && products.length > 0 && (
         <div className="flex justify-center mt-6">
           <button
@@ -90,4 +88,4 @@ const ProductGrid = ({
   );
 };
 export default ProductGrid;
- 
+

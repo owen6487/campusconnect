@@ -194,40 +194,31 @@ function Productdetails() {
               </div>
             </div>
 
-            {contactPhone ? (
-              <div className="mt-4 hidden flex-col gap-2 lg:flex">
-                <a href={whatsappLink} target="_blank" rel="noopener noreferrer"
-                  className="rounded-lg bg-green-500 px-4 py-3 text-center font-semibold text-white hover:bg-green-600">
-                  Chat on WhatsApp
-                </a>
-                <a href={callLink}
-                  className="rounded-lg border border-gray-300 px-4 py-3 text-center font-semibold hover:bg-gray-50">
-                  Call seller
-                </a>
-                <ShareButton
-                  title={product.name}
-                  text={`Check out "${product.name}" on Campus Connect for ${price}.`}
-                  subtitle={price}
-                  image={shareImage}
-                  url={typeof window !== "undefined" ? `${window.location.origin}${window.location.pathname}` : ""}
-                  className="mt-1"
-                />
-              </div>
-            ) : (
-              <>
-                <p className="mt-4 text-sm text-gray-500">This seller hasn't added a contact number yet.</p>
-                <div className="mt-4">
-                  <ShareButton
-                    title={product.name}
-                    text={`Check out "${product.name}" on Campus Connect for ${price}.`}
-                    subtitle={price}
-                    image={shareImage}
-                    url={typeof window !== "undefined" ? `${window.location.origin}${window.location.pathname}` : ""}
-                    className="w-full"
-                  />
-                </div>
-              </>
-            )}
+            <div className="mt-4 flex flex-col gap-2">
+              {contactPhone ? (
+                <>
+                  <a href={whatsappLink} target="_blank" rel="noopener noreferrer"
+                    className="rounded-lg bg-green-500 px-4 py-3 text-center font-semibold text-white hover:bg-green-600">
+                    Chat on WhatsApp
+                  </a>
+                  <a href={callLink}
+                    className="rounded-lg border border-gray-300 px-4 py-3 text-center font-semibold hover:bg-gray-50">
+                    Call seller
+                  </a>
+                </>
+              ) : (
+                <p className="text-sm text-gray-500">This seller hasn't added a contact number yet.</p>
+              )}
+
+              <ShareButton
+                title={product.name}
+                text={`Check out "${product.name}" on Campus Connect for ${price}.`}
+                subtitle={price}
+                image={shareImage}
+                url={typeof window !== "undefined" ? `${window.location.origin}${window.location.pathname}` : ""}
+                className="w-full"
+              />
+            </div>
           </div>
 
           <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
@@ -250,20 +241,31 @@ function Productdetails() {
         </section>
       </div>
 
-      {/* ── Mobile contact bar ── */}
-      {contactPhone && (
-        <div className="fixed inset-x-0 bottom-0 z-20 flex items-center gap-3 border-t bg-white px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden">
-          <p className="text-lg font-bold">{price}</p>
+      <div className="fixed inset-x-0 bottom-0 z-20 flex items-center gap-2 border-t bg-white px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden">
+        <p className="text-lg font-bold">{price}</p>
+        <ShareButton
+          title={product.name}
+          subtitle={price}
+          text={`Check out "${product.name}" on Campus Connect for ${price}.`}
+          image={shareImage}
+          url={typeof window !== "undefined" ? `${window.location.origin}${window.location.pathname}` : ""}
+          triggerText="Share"
+          compact
+          className="flex-1"
+        />
+        {whatsappLink && (
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer"
-            className="ml-auto rounded-lg bg-green-500 px-4 py-3 font-semibold text-white">
+            className="rounded-lg bg-green-500 px-4 py-3 font-semibold text-white">
             WhatsApp
           </a>
+        )}
+        {callLink && (
           <a href={callLink}
             className="rounded-lg border border-gray-300 px-4 py-3 font-semibold text-gray-700">
             Call
           </a>
-        </div>
-      )}
+        )}
+      </div>
 
       {lightboxOpen && (
         <Lightbox images={images} startindex={imageIndex} onClose={() => setLightboxOpen(false)} />

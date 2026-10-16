@@ -35,6 +35,7 @@ export default function ShareButton({
     className = "",
     variant = "default",          // "default" | "overlay" (invisible full-parent trigger)
     hideTrigger = false,          // render only the modal (parent controls opening)
+    triggerText = "Share",
     open: controlledOpen,
     onOpen,
     onClose,
@@ -111,11 +112,11 @@ export default function ShareButton({
                 <button
                     type="button"
                     onClick={handleClick}
-                    aria-label={`Share ${title || "this page"}`}
+                    aria-label={`${triggerText} ${title || "this page"}`}
                     className={triggerClass}
                 >
                     <LuShare2 className={compact ? "w-3.5 h-3.5" : "w-4 h-4"} />
-                    Share
+                    {triggerText}
                 </button>
             )}
 
