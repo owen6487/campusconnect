@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import api from "./apis";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Homepage from "./pages/Homepage";
@@ -32,7 +33,6 @@ import AdminUsers from "./components/Admin/AdminUsers";
 import AdminListings from "./components/Admin/AdminListings";
 import AdminFeedback from "./components/Admin/Adminfeedback";
 import CampusManager from "./components/Admin/CampusManager";
-import Wakeoverlay from "./components/Wakingoverlay";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -52,11 +52,26 @@ function App() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
 
+  useEffect(() => {
+    const wakeServer = async () => {
+      try {
+        await api.get("/campusconnect", { timeout: 30000 });
+      } catch (error) {
+        // silent background wake-up; no UI, no spinner
+      }
+    };
+
+    const timer = setTimeout(() => {
+      wakeServer();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <ScrollToTop />
       {!isAdminRoute && <Navbar />}
-      <Wakeoverlay/>
       <main>
         <Routes>
           <Route path="/" element={<Homepage />} />

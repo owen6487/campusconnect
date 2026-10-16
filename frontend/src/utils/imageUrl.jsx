@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.REACT_API_URL || import.meta.env.SERVER_URL || import.meta.env.REACT_APP_API_URL || import.meta.env.VITE_REACT_APP_API_URL || 'https://api.campusconnect.co.ke';
+const API_BASE_URL = import.meta.env.VITE_REACT_API_URL || import.meta.env.VITE_SERVER_URL|| 'https://api.campusconnect.co.ke';
 const SERVER_ORIGIN = String(API_BASE_URL).replace(/\/api\/?$/, '');
 export const FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80';
